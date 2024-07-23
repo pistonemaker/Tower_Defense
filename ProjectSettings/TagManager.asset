@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enermy
+  - TowerPos
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Enermy
+  - Tower
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Turret Base
+    uniqueID: 923374083
+    locked: 0
+  - name: Turret
+    uniqueID: 3770399159
+    locked: 0
+  - name: UI
+    uniqueID: 1398053689
+    locked: 0
+  - name: UI On Top
+    uniqueID: 1296402721
+    locked: 0
