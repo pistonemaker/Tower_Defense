@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class LevelButton : MonoBehaviour
 {
+    public int id;
     public Button levelButton;
     public Image check;
     public TextMeshProUGUI levelName;
@@ -12,7 +13,7 @@ public class LevelButton : MonoBehaviour
     public void Init(int levelID, bool pass)
     {
         levelName.text = (levelID + 1).ToString();
-        levelButton.onClick.AddListener(() => LoadLevel(levelID));
+        id = levelID;
         if (pass)
         {
             check.gameObject.SetActive(true);
@@ -21,6 +22,16 @@ public class LevelButton : MonoBehaviour
         {
             check.gameObject.SetActive(false);
         }
+    }
+
+    private void OnEnable()
+    {
+        levelButton.onClick.AddListener(() => LoadLevel(id));
+    }
+
+    private void OnDisable()
+    {
+        levelButton.onClick.RemoveAllListeners();
     }
 
     private void LoadLevel(int levelID)

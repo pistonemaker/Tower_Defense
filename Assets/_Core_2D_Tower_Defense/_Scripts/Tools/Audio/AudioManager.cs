@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
@@ -20,9 +22,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayMusic(string name)
+    public void PlayMusic(string musicName, float volume = 1f)
     {
-        Sound sound = Array.Find(musicSound, x => x.name == name);
+        Sound sound = Array.Find(musicSound, x => x.name == musicName);
+        musicSource.volume = volume;
 
         if (sound == null)
         {
@@ -30,14 +33,16 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            musicSource.clip = sound.clip;
+            int random = Random.Range(0, sound.clips.Count);
+            musicSource.clip = sound.clips[random];
             musicSource.Play();
         }
     }
     
-    public void PlaySFX(string name)
+    public void PlaySFX(string soundName, float volume = 1f)
     {
-        Sound sound = Array.Find(sfxSound, x => x.name == name);
+        Sound sound = Array.Find(sfxSound, x => x.name == soundName);
+        sFXSource.volume = volume;
 
         if (sound == null)
         {
@@ -45,28 +50,20 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            sFXSource.PlayOneShot(sound.clip);
+            
+            int random = Random.Range(0, sound.clips.Count);
+            sFXSource.PlayOneShot(sound.clips[random]);
         }
     }
 
-    public void ToggleMusic()
+    public void ToggleMusic(bool mute)
     {
-        musicSource.mute = !musicSource.mute;
+        musicSource.mute = mute;
     }
 
-    public void ToggleSFX()
+    public void ToggleSFX(bool mute)
     {
-        sFXSource.mute = !sFXSource.mute;
-    }
-
-    public void MusicVolume(float volume)
-    {
-        musicSource.volume = volume;
-    }
-
-    public void SFXVolume(float volume)
-    {
-        sFXSource.volume = volume;
+        sFXSource.mute = mute;
     }
 }
 
@@ -74,5 +71,5 @@ public class AudioManager : MonoBehaviour
 public class Sound
 {
     public string name;
-    public AudioClip clip;
+    public List<AudioClip> clips;
 }

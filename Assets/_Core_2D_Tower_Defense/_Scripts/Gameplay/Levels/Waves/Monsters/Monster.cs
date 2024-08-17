@@ -47,11 +47,17 @@ public class Monster : MonoBehaviour
             healthBar.gameObject.SetActive(false);
         }
         
-        if (Vector2.Distance(target, transform.position) <= 0.1f)
+        if (Vector2.Distance(target, transform.position) <= 0.1f 
+            && pathIndex < miniWave.pathway.wayPoints.Count - 1)
         {
             pathIndex++; 
             target = miniWave.pathway.wayPoints[pathIndex];
             RotateTowardsTarget();
+        }
+        else if (Vector2.Distance(target, transform.position) <= 0.1f 
+                 && pathIndex == miniWave.pathway.wayPoints.Count - 1)
+        {
+            pathIndex++;
         }
 
         if (pathIndex == miniWave.pathway.wayPoints.Count)
@@ -59,7 +65,8 @@ public class Monster : MonoBehaviour
             this.PostEvent(EventID.On_Monster_Escaped, damage);
             miniWave.listMonsters.Remove(this);
             miniWave.CheckIfAllEnermyDead();
-            PoolingManager.Despawn(gameObject);
+            //PoolingManager.Despawn(gameObject);
+            Destroy(gameObject);
         }
         else
         {
@@ -96,7 +103,9 @@ public class Monster : MonoBehaviour
         indicator.transform.SetParent(GameController.Instance.indicatorParent);
         indicator.ChangeIndicator(spiritStoneAmount);
         this.PostEvent(EventID.On_Monster_Killed, spiritStoneAmount);
-        PoolingManager.Despawn(gameObject);
+        AudioManager.Instance.PlaySFX("Dead", 0.75f);
+        //PoolingManager.Despawn(gameObject); 
+        Destroy(gameObject);
     }
     
     private void RotateTowardsTarget()

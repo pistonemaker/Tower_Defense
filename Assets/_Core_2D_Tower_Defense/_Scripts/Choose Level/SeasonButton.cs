@@ -1,9 +1,11 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SeasonButton : MonoBehaviour
 {
+    public int id;
     public Button seasonButton;
     public TextMeshProUGUI seasonName;
     public TextMeshProUGUI seasonProcess;
@@ -11,7 +13,17 @@ public class SeasonButton : MonoBehaviour
     public void Init(int seasonID)
     {
         seasonName.text = "Season " + (seasonID + 1);
-        seasonButton.onClick.AddListener(() => LoadLevelPanel(seasonID));
+        id = seasonID;
+    }
+
+    private void OnEnable()
+    {
+        seasonButton.onClick.AddListener(() => LoadLevelPanel(id));
+    }
+
+    private void OnDisable()
+    {
+        seasonButton.onClick.RemoveAllListeners();
     }
 
     private void LoadLevelPanel(int seasonID)

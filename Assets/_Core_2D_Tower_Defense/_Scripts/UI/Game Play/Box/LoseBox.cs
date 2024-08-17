@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -21,6 +22,8 @@ public class LoseBox : Singleton<LoseBox>
     public void Init()
     {
         Time.timeScale = 0f;
+        AudioManager.Instance.musicSource.Stop();
+        AudioManager.Instance.PlaySFX("Defeat");
         ShowCoin();
         closeButton.onClick.AddListener(CloseBox);
         restartButton.onClick.AddListener(RestartLevel);

@@ -1,5 +1,3 @@
-using System;
-
 public class ChooseLevelManager : Singleton<ChooseLevelManager>
 {
     public ChooseSeasonPanel chooseSeasonPanel;
@@ -8,6 +6,7 @@ public class ChooseLevelManager : Singleton<ChooseLevelManager>
 
     private void OnEnable()
     {
+        AudioManager.Instance.PlayMusic("Choose_Level", 0.5f);
         chooseSeasonPanel.Init();
         chooseSeasonPanel.gameObject.SetActive(true);
         chooseLevelPanel.gameObject.SetActive(false);

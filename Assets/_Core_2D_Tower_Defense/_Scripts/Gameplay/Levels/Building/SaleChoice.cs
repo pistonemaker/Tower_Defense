@@ -37,6 +37,7 @@ public class SaleChoice : MonoBehaviour
 
         if (curTower != null)
         {
+            AudioManager.Instance.PlaySFX("Sale_Tower");
             LevelManager.Instance.SpiritStone += LevelManager.Instance.database.listTowersData[id].
                 listSpecifications[curLevel].spiritStoneGetWhenSale;
             curTower.towerPosition.tower = null;

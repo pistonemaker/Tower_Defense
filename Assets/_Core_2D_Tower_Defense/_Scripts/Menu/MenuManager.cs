@@ -14,12 +14,10 @@ public class MenuManager : Singleton<MenuManager>
 
     private void Start()
     {
+        AudioManager.Instance.PlayMusic("Menu", 0.5f);
         startButton.onClick.AddListener(LoadChooseLevel);
-        
         exitButton.onClick.AddListener(ExitGame);
-        
         infoButton.onClick.AddListener(ShowInfo);
-        
         closeInfoButton.onClick.AddListener(HideInfo);
     }
 

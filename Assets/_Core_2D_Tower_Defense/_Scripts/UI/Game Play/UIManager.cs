@@ -134,12 +134,22 @@ public class UIManager : Singleton<UIManager>
     {
         winBox.coinGet = param;
         winBox.star = LevelManager.Instance.CountStarGet();
-        winBox.gameObject.SetActive(true);
+        Invoke(nameof(ShowWinBox), 1f);
     }
 
     private void HandlePlayerLose(int param)
     {
         loseBox.coinGet = param;
+        Invoke(nameof(ShowLoseBox), 1f);
+    }
+
+    private void ShowWinBox()
+    {
+        winBox.gameObject.SetActive(true);
+    }
+
+    private void ShowLoseBox()
+    {
         loseBox.gameObject.SetActive(true);
     }
 }

@@ -86,6 +86,7 @@ public class BuildChoice : MonoBehaviour
             // Nâng cấp tháp hiện tại
             if (curTower != null)
             {
+                AudioManager.Instance.PlaySFX("Upgrade_Tower");
                 UpgradeTower(curTower);
                 curTower.towerPosition.upgradeMenu.upgradeBuildChoice.curLevel++;
                 curTower.towerPosition.upgradeMenu.saleChoice.curLevel++;
@@ -104,6 +105,7 @@ public class BuildChoice : MonoBehaviour
                     return;
                 }
                 
+                AudioManager.Instance.PlaySFX("Build_Tower");
                 var tower = Instantiate(TowerBuildManager.Instance.towerPrefab,
                     curTowerPosition.transform.position, Quaternion.identity).GetComponent<Tower>();
                 curTowerPosition.upgradeMenu.tower = tower;

@@ -18,6 +18,8 @@ public class ChooseLevelPanel : Singleton<ChooseLevelPanel>
         {
             var levelButton = PoolingManager.Spawn(levelButtonPrefab, transform.position, Quaternion.identity);
             var pass = seasonData.listLevelData[i].isPass;
+            levelButton.name = "Level " + (i + 1);
+            levelButton.transform.SetSiblingIndex(i);
             levelButton.transform.SetParent(content);
             levelButton.transform.localScale = Vector3.one;
             levelButton.Init(i, pass);

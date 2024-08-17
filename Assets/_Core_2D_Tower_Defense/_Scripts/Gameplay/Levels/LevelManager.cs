@@ -41,7 +41,8 @@ public class LevelManager : Singleton<LevelManager>
     protected override void Awake()
     {
         base.Awake();
-
+        
+        AudioManager.Instance.PlayMusic("Game_Play", 0.5f);
         InitMap();
         InitLevel();
     }

@@ -20,10 +20,12 @@ public class WinBox : Singleton<WinBox>
     {
         Init();
     }
-
+    
     public void Init()
     {
         Time.timeScale = 0f;
+        AudioManager.Instance.musicSource.Stop();
+        AudioManager.Instance.PlaySFX("Victory");
         ShowCoin();
         closeButton.onClick.AddListener(CloseBox);
     }
